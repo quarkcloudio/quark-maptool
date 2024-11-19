@@ -1,3 +1,6 @@
+// 接口地址
+var apiUrl = "API_URL";
+
 // 设置动作集和动作名称
 var actionSetName = "地图调色"; // 动作集的名称
 var actionName = "调整";     // 动作的名称
