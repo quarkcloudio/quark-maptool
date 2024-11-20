@@ -72,8 +72,8 @@ func (p *SyncTaskAction) Handle(ctx *quark.Context, query *gorm.DB) error {
 			return ctx.JSON(200, message.Error(err.Error()))
 		}
 
-		if info.IsDir() {
-			scriptFilePath := "./web/app/storage/scripts/" + strings.ReplaceAll(path, "/", "_") + ".jsx"
+		if info.IsDir() && len(strings.Split(path, "\\")) == 4 {
+			scriptFilePath := "./web/app/storage/scripts/" + strings.ReplaceAll(path, "\\", "_") + ".jsx"
 			p.MakeScript("./web/app/script_templates/changecolor.jsx", scriptFilePath, "http://127.0.0.1:3000", "地图调色", "调整", "./web/map")
 			fmt.Println("Directory:", path)
 			service.NewPhotoshopTaskService().Insert(
