@@ -37,6 +37,6 @@ examples/*/web/
 examples/*/data.db
 
 web/map/
-web/storage/scripts/
+web/app/storage/scripts/
 web/map.zip
 app.log

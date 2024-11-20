@@ -66,15 +66,18 @@ func (p *SyncTaskAction) Handle(ctx *quark.Context, query *gorm.DB) error {
 		return ctx.JSON(200, message.Error(err.Error()))
 	}
 
+	execPath, _ := os.Executable()
+	execDir := filepath.Dir(execPath)
+
 	err = filepath.Walk(dirPath, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			fmt.Println("Error accessing path:", err)
 			return ctx.JSON(200, message.Error(err.Error()))
 		}
-
 		if info.IsDir() && len(strings.Split(path, "\\")) == 4 {
+			getExecDir := strings.ReplaceAll(execDir+path, "\\", "\\\\")
 			scriptFilePath := "./web/app/storage/scripts/" + strings.ReplaceAll(path, "\\", "_") + ".jsx"
-			p.MakeScript("./web/app/script_templates/changecolor.jsx", scriptFilePath, "http://127.0.0.1:3000", "地图调色", "调整", "./web/map")
+			p.MakeScript("./web/app/script_templates/changecolor.jsx", scriptFilePath, "127.0.0.1:3000", "地图调色", "调整", getExecDir)
 			service.NewPhotoshopTaskService().Insert(
 				model.PhotoshopTask{
 					ClientIp:   clientIp,
