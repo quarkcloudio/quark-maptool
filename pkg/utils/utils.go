@@ -1,6 +1,8 @@
 package utils
 
 import (
+	"fmt"
+	"net"
 	"regexp"
 	"strings"
 
@@ -86,4 +88,37 @@ func CheckRegex(expr, content string) bool {
 	}
 
 	return r.MatchString(content)
+}
+
+func ClientIp() (ip string, err error) {
+	err = nil
+	ip = ""
+	// 获取网络接口
+	interfaces, err := net.Interfaces()
+	if err != nil {
+		fmt.Println("Error getting network interfaces:", err)
+		return ip, err
+	}
+
+	for _, iface := range interfaces {
+		// 跳过未启用或环回接口
+		if iface.Flags&net.FlagUp == 0 || iface.Flags&net.FlagLoopback != 0 {
+			continue
+		}
+
+		// 获取接口地址
+		addrs, err := iface.Addrs()
+		if err != nil {
+			fmt.Printf("Error getting addresses for interface %s: %v\n", iface.Name, err)
+			continue
+		}
+
+		for _, addr := range addrs {
+			ipNet, ok := addr.(*net.IPNet)
+			if ok && ipNet.IP.To4() != nil { // 只获取 IPv4 地址
+				ip = ipNet.IP.String()
+			}
+		}
+	}
+	return ip, err
 }

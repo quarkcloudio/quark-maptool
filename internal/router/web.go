@@ -8,4 +8,5 @@ import (
 // 注册Web路由
 func WebRegister(b *quark.Engine) {
 	b.GET("/", (&home.Index{}).Index)
+	b.GET("/api/home/taskDone", (&home.Index{}).TaskDone)
 }

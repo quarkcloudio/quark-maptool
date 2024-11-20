@@ -38,3 +38,4 @@ examples/*/data.db
 
 web/map/
 web/map.zip
+app.log
