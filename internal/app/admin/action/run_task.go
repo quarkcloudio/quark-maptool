@@ -9,6 +9,7 @@ import (
 	"github.com/quarkcloudio/quark-go/v3"
 	"github.com/quarkcloudio/quark-go/v3/template/admin/component/message"
 	"github.com/quarkcloudio/quark-go/v3/template/admin/resource/actions"
+	"github.com/quarkcloudio/quark-go/v3/utils/datetime"
 	"github.com/quarkcloudio/quark-smart/v2/internal/model"
 	"github.com/quarkcloudio/quark-smart/v2/internal/service"
 	"gorm.io/gorm"
@@ -92,7 +93,8 @@ func (p *RunTaskAction) doTask(task model.PhotoshopTask) {
 	service.NewPhotoshopTaskService().UpdateByFilePath(
 		task.FilePath,
 		model.PhotoshopTask{
-			Status: 2,
+			TaskStartedAt: datetime.Now(),
+			Status:        2,
 		},
 	)
 }

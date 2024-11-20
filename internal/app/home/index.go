@@ -2,6 +2,7 @@ package home
 
 import (
 	"github.com/quarkcloudio/quark-go/v3"
+	"github.com/quarkcloudio/quark-go/v3/utils/datetime"
 	"github.com/quarkcloudio/quark-smart/v2/internal/model"
 	"github.com/quarkcloudio/quark-smart/v2/internal/service"
 )
@@ -22,7 +23,8 @@ func (p *Index) TaskDone(ctx *quark.Context) error {
 	service.NewPhotoshopTaskService().UpdateByFilePath(
 		taskPath,
 		model.PhotoshopTask{
-			Status: 3,
+			TaskEndAt: datetime.Now(),
+			Status:    3,
 		},
 	)
 	return ctx.JSONOk(taskPath)

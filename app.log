@@ -119,3 +119,6 @@
 ⇨ http server started on 127.0.0.1:3000
 ⇨ http server started on 127.0.0.1:3000
 ⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+{"time":"2024-11-20T18:24:45.6167133+08:00","level":"FATAL","prefix":"echo","file":"engine.go","line":"686","message":"listen tcp 127.0.0.1:3000: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted."}
