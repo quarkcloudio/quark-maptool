@@ -1,1 +1,36 @@
 ⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+{"time":"2024-11-20T10:58:49.8043522+08:00","level":"FATAL","prefix":"echo","file":"engine.go","line":"686","message":"listen tcp 127.0.0.1:3000: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted."}
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+{"time":"2024-11-20T11:01:10.0996879+08:00","level":"FATAL","prefix":"echo","file":"engine.go","line":"686","message":"listen tcp 127.0.0.1:3000: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted."}
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000
+⇨ http server started on 127.0.0.1:3000

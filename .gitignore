@@ -35,3 +35,6 @@ examples/*/web/
 
 # examples web site sqlite files
 examples/*/data.db
+
+web/map/
+web/map.zip

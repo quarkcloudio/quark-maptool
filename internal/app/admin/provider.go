@@ -21,4 +21,5 @@ var Provider = []interface{}{
 	&resource.Navigation{},
 	&upload.File{},
 	&upload.Image{},
+	&resource.PhotoshopTask{},
 }
