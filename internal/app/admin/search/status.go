@@ -29,7 +29,7 @@ func (p *StatusField) Options(ctx *quark.Context) interface{} {
 
 	return []selectfield.Option{
 		p.Option("未开始", 1),
-		p.Option("已开始", 2),
-		p.Option("已结束", 3),
+		p.Option("进行中", 2),
+		p.Option("已完成", 3),
 	}
 }

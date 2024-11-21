@@ -53,8 +53,8 @@ func (p *PhotoshopTask) Fields(ctx *quark.Context) []interface{} {
 		field.Select("status", "状态").SetOptions(
 			[]selectfield.Option{
 				{Value: 1, Label: "未开始"},
-				{Value: 2, Label: "已开始"},
-				{Value: 3, Label: "已结束"},
+				{Value: 2, Label: "进行中"},
+				{Value: 3, Label: "已完成"},
 			}),
 	}
 }

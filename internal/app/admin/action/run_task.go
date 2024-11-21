@@ -95,7 +95,6 @@ func (p *RunTaskAction) doTask(task model.PhotoshopTask) {
 	_, err := cmd.CombinedOutput()
 	if err != nil {
 		fmt.Printf("脚本执行错误: %v\n", err)
-		return
 	}
 
 	service.NewPhotoshopTaskService().UpdateByFilePath(
