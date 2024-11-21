@@ -72,8 +72,8 @@ func (p *RunTaskAction) task() {
 		taskStatus := utils.GetConfig("TASK_STATUS")
 		if taskStatus == "1" {
 			hasDoingTask, _ := service.NewPhotoshopTaskService().GetOneByStatus(2)
-			if hasDoingTask.Id == 0 {
-				taskInfo, _ := service.NewPhotoshopTaskService().GetOneByStatus(1)
+			taskInfo, _ := service.NewPhotoshopTaskService().GetOneByStatus(1)
+			if hasDoingTask.Id == 0 && taskInfo.Id != 0 {
 				p.doTask(taskInfo)
 			}
 		}

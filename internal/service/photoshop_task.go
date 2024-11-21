@@ -107,3 +107,12 @@ func (p *PhotoshopTaskService) GetOneByStatus(status int) (info model.PhotoshopT
 
 	return info, err
 }
+
+// 获取单条数据
+func (p *PhotoshopTaskService) GetOneFilePath(path string) (info model.PhotoshopTask) {
+	db.Client.
+		Where("file_path = ?", path).
+		First(&info)
+
+	return info
+}

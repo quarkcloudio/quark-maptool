@@ -78,15 +78,18 @@ func (p *SyncTaskAction) Handle(ctx *quark.Context, query *gorm.DB) error {
 			getExecDir := strings.ReplaceAll(execDir+"\\"+path, "\\", "\\\\")
 			scriptFilePath := "./web/app/storage/scripts/" + strings.ReplaceAll(path, "\\", "_") + ".jsx"
 			p.MakeScript("./web/app/script_templates/changecolor.jsx", scriptFilePath, "127.0.0.1:3000", "地图调色", "调整", getExecDir)
-			service.NewPhotoshopTaskService().Insert(
-				model.PhotoshopTask{
-					ClientIp:   clientIp,
-					ClientName: hostname,
-					FilePath:   path,
-					ScriptPath: scriptFilePath,
-					Status:     1,
-				},
-			)
+			hasTask := service.NewPhotoshopTaskService().GetOneFilePath(path)
+			if hasTask.Id == 0 {
+				service.NewPhotoshopTaskService().Insert(
+					model.PhotoshopTask{
+						ClientIp:   clientIp,
+						ClientName: hostname,
+						FilePath:   path,
+						ScriptPath: scriptFilePath,
+						Status:     1,
+					},
+				)
+			}
 		}
 		return nil
 	})
