@@ -62,6 +62,8 @@ func (p *PhotoshopTask) Fields(ctx *quark.Context) []interface{} {
 // 搜索
 func (p *PhotoshopTask) Searches(ctx *quark.Context) []interface{} {
 	return []interface{}{
+		searches.Input("client_name", "客户端名称"),
+		searches.Input("client_ip", "客户端IP"),
 		search.Status(),
 		searches.DatetimeRange("created_at", "创建时间"),
 	}
