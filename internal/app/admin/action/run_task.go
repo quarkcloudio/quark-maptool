@@ -68,7 +68,7 @@ func (p *RunTaskAction) task() {
 	s := gocron.NewScheduler(time.Local)
 
 	// 每 10 秒执行一次任务
-	s.Every(5).Seconds().Do(func() {
+	s.Every(3).Seconds().Do(func() {
 		taskStatus := utils.GetConfig("TASK_STATUS")
 		if taskStatus == "1" {
 			hasDoingTask, _ := service.NewPhotoshopTaskService().GetOneByStatus(2)
