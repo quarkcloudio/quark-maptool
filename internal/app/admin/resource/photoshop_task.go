@@ -72,6 +72,7 @@ func (p *PhotoshopTask) Actions(ctx *quark.Context) []interface{} {
 		action.OpenTask(),
 		action.CloseTask(),
 		action.SyncTask(),
+		action.ClearTask(),
 		actions.BatchDelete(),
 		actions.BatchDisable(),
 		actions.BatchEnable(),

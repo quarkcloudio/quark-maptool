@@ -43,6 +43,27 @@ func (p *PhotoshopTaskService) UpdateByFilePath(taskFilePath string, data model.
 	return err
 }
 
+// 清理本机任务
+func (p *PhotoshopTaskService) Delete() (err error) {
+	clientIp, err := utils.ClientIp()
+	if err != nil {
+		return err
+	}
+
+	// 获取主机名
+	hostname, err := os.Hostname()
+	if err != nil {
+		return err
+	}
+
+	err = db.Client.
+		Where("client_name", hostname).
+		Where("client_ip", clientIp).
+		Delete(&model.PhotoshopTask{}).Error
+
+	return err
+}
+
 // 获取列表
 func (p *PhotoshopTaskService) GetList() (list []model.PhotoshopTask, err error) {
 	clientIp, err := utils.ClientIp()
