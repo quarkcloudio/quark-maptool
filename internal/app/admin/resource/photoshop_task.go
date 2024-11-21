@@ -69,6 +69,8 @@ func (p *PhotoshopTask) Searches(ctx *quark.Context) []interface{} {
 func (p *PhotoshopTask) Actions(ctx *quark.Context) []interface{} {
 	return []interface{}{
 		action.RunTask(),
+		action.CloseTask(),
+		action.OpenTask(),
 		action.SyncTask(),
 		actions.BatchDelete(),
 		actions.BatchDisable(),

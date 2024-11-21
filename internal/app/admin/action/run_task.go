@@ -12,6 +12,7 @@ import (
 	"github.com/quarkcloudio/quark-go/v3/utils/datetime"
 	"github.com/quarkcloudio/quark-smart/v2/internal/model"
 	"github.com/quarkcloudio/quark-smart/v2/internal/service"
+	"github.com/quarkcloudio/quark-smart/v2/pkg/utils"
 	"gorm.io/gorm"
 )
 
@@ -24,7 +25,7 @@ func RunTask(options ...interface{}) *RunTaskAction {
 	action := &RunTaskAction{}
 
 	// 文字
-	action.Name = "执行任务"
+	action.Name = "启动服务"
 	if len(options) == 1 {
 		action.Name = options[0].(string)
 	}
@@ -44,6 +45,8 @@ func (p *RunTaskAction) Init(ctx *quark.Context) interface{} {
 	// 设置展示位置
 	p.SetOnlyOnIndex(true)
 
+	p.Type = "primary"
+
 	// 行为类型
 	p.ActionType = "ajax"
 
@@ -59,17 +62,22 @@ func (p *RunTaskAction) Handle(ctx *quark.Context, query *gorm.DB) error {
 
 func (p *RunTaskAction) task() {
 
+	// 设置任务状态
+	utils.SetConfig("TASK_STATUS", "1")
+
 	// 创建调度器
 	s := gocron.NewScheduler(time.Local)
 
 	// 每 10 秒执行一次任务
 	s.Every(5).Seconds().Do(func() {
-		hasDoingTask, _ := service.NewPhotoshopTaskService().GetOneByStatus(2)
-		if hasDoingTask.Id == 0 {
-			taskInfo, _ := service.NewPhotoshopTaskService().GetOneByStatus(1)
-			p.doTask(taskInfo)
+		taskStatus := utils.GetConfig("TASK_STATUS")
+		if taskStatus == "1" {
+			hasDoingTask, _ := service.NewPhotoshopTaskService().GetOneByStatus(2)
+			if hasDoingTask.Id == 0 {
+				taskInfo, _ := service.NewPhotoshopTaskService().GetOneByStatus(1)
+				p.doTask(taskInfo)
+			}
 		}
-		fmt.Println("Task executed at:", time.Now())
 	})
 
 	// 启动调度器
