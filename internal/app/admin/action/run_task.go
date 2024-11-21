@@ -1,7 +1,6 @@
 package action
 
 import (
-	"fmt"
 	"os/exec"
 	"time"
 
@@ -92,10 +91,7 @@ func (p *RunTaskAction) doTask(task model.PhotoshopTask) {
 	cmd := exec.Command(photoshopPath, task.ScriptPath)
 
 	// 执行命令
-	_, err := cmd.CombinedOutput()
-	if err != nil {
-		fmt.Printf("脚本执行错误: %v\n", err)
-	}
+	cmd.CombinedOutput()
 
 	service.NewPhotoshopTaskService().UpdateByFilePath(
 		task.FilePath,
