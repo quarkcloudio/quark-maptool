@@ -94,7 +94,7 @@ func (p *RunTaskAction) doTask(task model.PhotoshopTask) {
 	// 执行命令
 	_, err := cmd.CombinedOutput()
 	if err != nil {
-		fmt.Printf("Error executing script: %v\n", err)
+		fmt.Printf("脚本执行错误: %v\n", err)
 		return
 	}
 
